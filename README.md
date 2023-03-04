@@ -18,21 +18,21 @@ drone is a constant and does not vary between drones. The maximum number of dron
 squad is 100, and there is no maximum number of deliveries which are required.
 
 ## Solution
-An statistic aproach was used to solve the problem. 
+I chose a statistical approach to solve the problem.
 
-First, the drones and locations data needs to be ordered ascending.
+First, the drone and location data need to be in ascending order.
 
-Second, the locations wich its weigth exceed the highest drone weigth charge capacity should be removed.
+Second, remove all the locations from the input data with a weight that exceeds the highest drone weight charge capacity.
 
-Thrid, the location data was grouped in three parts:
+Thrid, group the location data into three parts:
 
-1. from percentile 0 to 20: Atypical lowest values.
-2. from percentile 20 to 80: Normal values.
-3. From percentile 80 to 100: Atypical highest values.
+  1. From percentile 0 to 19: Atypical lowest values.
+  2. From percentile 20 to 79: Normal values.
+  3. From percentile 80 to 99: Atypical highest values.
+  
+Fourth, distribute the charge and try to occupy the maximum weight capacity the biggest drone can carry. Then the relation between the trip weight and the drone weight capacity is calculated for each drone. This method allows us to choose the correct drone (the drone with the closest relation to 1, but never over 1).
 
-Fourth, the charge is distributed trying to reach the maximun weigth capacity of the biggest drone. Then the relation between the trip weigth and the drone weigth capacity is calculated for each drone. So, this way we can choose the correct drone (the drone with the relation most closer to 1, but never over 1).
-
-To distribute the wegiths in a trip, we need to start with the normal values, then we follow with the atypical lowest values and finally we took the atypical highest values.
+To accomplish the distribution of the weights for a trip, we need to start with the Normal values. After, follow with the atypical lowest values. Finally, we took the atypical highest values.
 
 ## Technical Dependencies and Libraries
 
@@ -40,7 +40,7 @@ To distribute the wegiths in a trip, we need to start with the normal values, th
 It's a Web API wich target framework is .Net 6. The app was developed using visual studio 2022. It includes the Domain class library and Swashbuckle as dependencies.
 
 >## Application
-It's a custom clase library wich target framework is .Net 6. The library was developed using visual studio 2022. It includes Microsoft.Extensions.Configurations and the Domain class library as dependencies.
+It's a custom class library wich target framework is .Net 6. The library was developed using visual studio 2022. It includes Microsoft.Extensions.Configurations and the Domain class library as dependencies.
 
 >## Domain
-It's a custom clase library wich target framework is .Net 6. The library was developed using visual studio 2022. It includes Microsoft.AspNetCore.Http.Extensions, Microsoft.AspNetCore.Http.Features and the Domain class library as dependencies.
+It's a custom class library wich target framework is .Net 6. The library was developed using visual studio 2022. It includes Microsoft.AspNetCore.Http.Extensions, Microsoft.AspNetCore.Http.Features and the Domain class library as dependencies.
